@@ -38,7 +38,7 @@ public class ProveedorEntity {
     private String providerCode;
 
     @Column(name = "PROVIDERSTATUS")
-    private Integer providerStatus;
+    private Long providerStatus;
 
     @Column(name = "PROVIDERCOMMENTS")
     private String providerComments;

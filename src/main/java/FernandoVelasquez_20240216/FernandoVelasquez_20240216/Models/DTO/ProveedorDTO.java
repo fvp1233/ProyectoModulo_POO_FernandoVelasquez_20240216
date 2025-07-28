@@ -2,6 +2,7 @@ package FernandoVelasquez_20240216.FernandoVelasquez_20240216.Models.DTO;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -32,9 +33,7 @@ public class ProveedorDTO {
     private String providerCode;
 
 
-    @NotBlank
-    @Size(max = 1, message = "El estatus del proveedor no puede exceder mas de un caracter")
-    private Integer providerStatus;
+    private Long providerStatus;
 
     @Size(max = 256, message = "Los comentarios del proveedor no puede exceder los 256 caracteres")
     private String providerComments;

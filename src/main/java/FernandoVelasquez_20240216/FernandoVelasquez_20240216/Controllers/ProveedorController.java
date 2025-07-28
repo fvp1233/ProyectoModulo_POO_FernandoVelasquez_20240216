@@ -28,7 +28,7 @@ public class ProveedorController {
     //Metodo GET
     @GetMapping("/consultarDatos")
     public List<ProveedorDTO> obtenerDatos(){
-        return service.obtenerUsuarios();
+        return service.obtenerProveedores();
     }
 
     //Metodo POST
@@ -56,7 +56,7 @@ public class ProveedorController {
         }
     }
 
-    @PutMapping("/editarProveedor/{id}")
+    @PutMapping("/editarProveedor/{providerID}")
     public ResponseEntity <?> modificarProveedor(
             @PathVariable Long providerID,
             @Valid @RequestBody ProveedorDTO json, BindingResult bindingResult
@@ -82,6 +82,26 @@ public class ProveedorController {
                             "Campo", e.getCampoDuplicado()
                     ));
                 }
+    }
+
+    @DeleteMapping("eliminarProveedor/{providerID}")
+    public ResponseEntity<Void> eliminarProveedor (@PathVariable Long providerID){
+        try {
+            service.removerProveedor(providerID);
+            return ResponseEntity.noContent().build();
+        } catch (ExceptionProveedorNoEncontrado e){
+            return ResponseEntity.notFound().build(); //si da error cambiar la r a mayuscla
+        }
+    }
+
+    @GetMapping("/consultarDatos/{providerID}")
+    public ResponseEntity<?>obtenerProveedorPorId(@PathVariable Long providerID){
+        try {
+            ProveedorDTO proveedor = service.obtenerProveedorPorId(providerID);
+            return ResponseEntity.ok(proveedor);
+        } catch (ExceptionProveedorNoEncontrado e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
