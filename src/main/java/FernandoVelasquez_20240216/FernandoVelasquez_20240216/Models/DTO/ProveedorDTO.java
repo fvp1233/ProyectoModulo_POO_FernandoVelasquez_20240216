@@ -1,9 +1,6 @@
 package FernandoVelasquez_20240216.FernandoVelasquez_20240216.Models.DTO;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +29,9 @@ public class ProveedorDTO {
     @Size(max = 35, message = "El codigo del proveedor no puede exceder los 35 caracteres")
     private String providerCode;
 
-
+    //Le pongo la validacion ya que en la base 0 es inactivo y 1 es activo no se puede pasar de esos valores
+    @Min(value = 0, message = "El valor no puede ser menor a 0")
+    @Max(value = 1, message = "El valor no puede pasar de 1")
     private Long providerStatus;
 
     @Size(max = 256, message = "Los comentarios del proveedor no puede exceder los 256 caracteres")
